@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: eureka-server
+  server:
+    port: 8761
+  eureka:
+    instance:
+      hostname: eureka-server
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:${server.port}/eureka/
+      register-with-eureka: false
+      fetch-registry: false
+logging:
+  file:
+    name: /logs/api.log  # 로그 파일 경로 및 파일명 지정
+  logback:
+    rolling-policy:
+      file-name-pattern: logs/api-local-%d{yyyy-MM-dd}.log  # 롤링 파일 패턴 지정
+      max-file-size: 500MB  # 파일 최대 크기 설정
+      max-history: 10  # 최대 10일치 로그 파일 보관
+  level:
+    root: info  # 기본 로그 레벨은 info
+    org.msa.item-service: debug  # 'org.msa.item-service' 패키지 아래는 debug 레벨
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

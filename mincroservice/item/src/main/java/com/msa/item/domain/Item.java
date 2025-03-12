@@ -1,13 +1,28 @@
 package com.msa.item.domain;
 
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Item {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Integer id;
+    @Column
     private String name;
+    @Column
     private String description;
+    @Column
     private Long count;
+
+    @Column
     private String regDts;
+    @Column
     private String updDts;
 }
