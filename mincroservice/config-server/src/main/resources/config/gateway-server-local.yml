@@ -1,0 +1,25 @@
+logging:
+  file:
+    name: /logs/gateway.log  # 로그 파일 경로 및 파일명 지정
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info  # 기본 로그 레벨은 info
+    org.msa.gateway-server: debug  # 'org.msa.item-service' 패키지 아래는 debug 레벨
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: item-service
+          uri: lb://ITEM-SERVICE
+          predicates:
+            - Path=/api/item/**
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

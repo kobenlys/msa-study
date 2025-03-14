@@ -1,3 +1,12 @@
+logging:
+  file:
+    name: /logs/authentication.log  # 로그 파일 경로 및 파일명 지정
+    max-size: 500MB
+    max-history: 10
+  level:
+    root: info  # 기본 로그 레벨은 info
+    org.msa.autentication-server: debug  # 'org.msa.item-service' 패키지 아래는 debug 레벨
+
 spring:
   datasource:
     uri: jdbc:mysql://localhost:3306/msa
@@ -12,21 +21,7 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true  # 콘솔에 SQL 로그 출력
-logging:
-  file:
-    name: /logs/api.log  # 로그 파일 경로 및 파일명 지정
-  logback:
-    rolling-policy:
-      file-name-pattern: logs/api-local-%d{yyyy-MM-dd}.log  # 롤링 파일 패턴 지정
-      max-file-size: 500MB  # 파일 최대 크기 설정
-      max-history: 10  # 최대 10일치 로그 파일 보관
-  level:
-    root: info  # 기본 로그 레벨은 info
-    org.msa.item-service: debug  # 'org.msa.item-service' 패키지 아래는 debug 레벨
 
-token:
-  expiration_time: 8600000
-  secret: SECU100
 
 eureka:
   client:
